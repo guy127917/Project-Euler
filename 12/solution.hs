@@ -1,3 +1,4 @@
+--What is the value of the first triangle number to have over five hundred divisors?
 
 triangleNumber n = sum [n, n-1..1]
 
