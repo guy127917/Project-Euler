@@ -1,6 +1,6 @@
 import List
 
---grid :: Integral a => [[a]]
+grid :: Num a => [[a]]
 grid = [
  [08,02,22,97,38,15,00,40,00,75,04,05,07,78,52,12,50,77,91,08],
  [49,49,99,40,17,81,18,57,60,87,17,40,98,43,69,48,04,56,62,00],
@@ -23,9 +23,13 @@ grid = [
  [20,73,35,29,78,31,90,01,74,31,49,71,48,86,81,16,23,57,05,54],
  [01,70,54,71,83,51,54,69,16,92,33,48,61,43,52,01,89,19,67,48]]
 
-tl4 (a,b,c,d) = [a:b:c:d]
+-- convert a 4 tuple to a list
+tl4 :: (a,a,a,a) -> [a]
+tl4 (a,b,c,d) = a:b:c:d:[]
+
 lt4 (a:b:c:d:[]) = (a,b,c,d)
 
+-- Just take 4 values recursively from each row until we reach the end
 horizontals :: [[a]] -> [(a,a,a,a)]
 horizontals g = concat $ map r g
 	where 
@@ -39,6 +43,7 @@ verticals g = concat $ s g
 	  s (r1:r2:r3:[]) = []
 	  s l@(r1:r2:r3:r4:rs) = zip4 r1 r2 r3 r4 : (s $ tail l) 
 
+-- zip offset rows in both directions for each set of 4 consecutive rows
 diagonals :: [[a]] -> [(a,a,a,a)]
 diagonals g = d g
 	where
@@ -49,8 +54,9 @@ diagonals g = d g
 
 allLines = (horizontals grid) ++ (verticals grid) ++ (diagonals grid)
 
+-- calculating the product of each 4 tuple
 calc :: Num a => (a,a,a,a) -> a
-calc (a,b,c,d) = a * b * c * d
+calc x = foldl (*) 1 (tl4 x)
 
 main = do
     putStrLn "Horizontals"
