@@ -1,0 +1,9 @@
+Author: Guy Burton
+Date:   24 May 2011
+
+I've started doing some Project Euler problems when I have a chance, mainly to improve my Haskell. I'm hosting them here for my own convenience. All the code is unlicensed and without warranty, use as you wish. I wouldn't take these solutions as reference, they are just the way I decided to solve them. If you want to discuss the solutions with me, feel free to message me, but there are plenty of forums dedicated to people solving these problems.
+
+Build all examples using ghc --make solution.hs and run with ./solution
+I used ghc 6.12 throughout, but these solutions should be compatible with most Haskell 98 compilers. 
+
+Thanks to http://projecteuler.net/ for putting up some interesting problems :)
